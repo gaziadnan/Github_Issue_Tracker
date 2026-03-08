@@ -45,9 +45,7 @@ container.innerHTML = "";
 issues.forEach(issue => {
 
 const borderClass = issue.status === "open" ? "open-border" : "closed-border";
-
 const iconClass = issue.status === "open" ? "open-icon" : "closed-icon";
-
 const priorityClass = issue.priority.toLowerCase();
 
 
@@ -59,34 +57,35 @@ const labels = issue.labels || [];
 
 labels.forEach(label => {
 
-let icon = "🏷";
+let icon = "images/tag.png";
 let className = "label";
 
 if (label.toLowerCase() === "bug") {
 
-icon = "🐞";
+icon = "images/bug.png";
 className = "label bug";
 
 }
-
 else if (label.toLowerCase() === "help wanted") {
 
-icon = "🖼";
+icon = "images/help.png";
 className = "label help";
 
 }
-
 else if (label.toLowerCase() === "enhancement") {
 
-icon = "✨";
-className = "label help";
+icon = "images/enhancement.png";
+className = "label enhance";
 
 }
 
 labelsHTML += `
+
 <span class="${className}">
-${icon} ${label.toUpperCase()}
+<img src="${icon}" class="label-icon">
+${label.toUpperCase()}
 </span>
+
 `;
 
 });
@@ -96,12 +95,18 @@ const card = document.createElement("div");
 
 card.className = `card ${borderClass}`;
 
+/* CARD CLICK করলে MODAL OPEN */
+
+card.onclick = function() {
+showModal(issue.id);
+};
+
 card.innerHTML = `
 
 <div class="card-top">
 
 <div class="status-icon ${iconClass}">
-${issue.status === "open" ? "✓" : "●"}
+<img src="${issue.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed- Status .png"}" class="status-img">
 </div>
 
 <div class="priority ${priorityClass}">
@@ -110,7 +115,7 @@ ${issue.priority.toUpperCase()}
 
 </div>
 
-<h3 onclick="showModal(${issue.id})">${issue.title}</h3>
+<h3>${issue.title}</h3>
 
 <p class="desc">${issue.description}</p>
 
@@ -182,21 +187,59 @@ const data = await res.json();
 
 const issue = data.data;
 
+const statusClass = issue.status === "open" ? "badge-open" : "badge-closed";
+
 document.getElementById("modalBody").innerHTML = `
 
-<h2>${issue.title}</h2>
+<div class="modal-title">
+${issue.title}
+</div>
 
-<p>${issue.description}</p>
+<div class="modal-meta">
 
-<p>Status: ${issue.status}</p>
+<span class="${statusClass}">
+${issue.status === "open" ? "Opened" : "Closed"}
+</span>
 
-<p>Priority: ${issue.priority}</p>
+<span>•</span>
 
-<p>Author: ${issue.author}</p>
+<span>Opened by ${issue.author}</span>
 
-<p>Labels: ${issue.labels}</p>
+<span>•</span>
 
-<p>Date: ${issue.createdAt}</p>
+<span>${new Date(issue.createdAt).toLocaleDateString()}</span>
+
+</div>
+
+<div class="labels">
+${issue.labels.map(l=>`<span class="label bug">${l}</span>`).join("")}
+</div>
+
+<p class="modal-desc">
+${issue.description}
+</p>
+
+<div class="modal-bottom">
+
+<div>
+<b>Assignee:</b>
+<br>
+${issue.author}
+</div>
+
+<div>
+<b>Priority:</b>
+<br>
+<span class="priority-badge">
+${issue.priority.toUpperCase()}
+</span>
+</div>
+
+</div>
+
+<button class="modal-close-btn" onclick="closeModal()">
+Close
+</button>
 
 `;
 
@@ -204,8 +247,22 @@ document.getElementById("modal").classList.remove("hidden");
 
 }
 
-function closeModal() {
+/* MODAL CLOSE FUNCTION */
+
+function closeModal(){
 
 document.getElementById("modal").classList.add("hidden");
 
 }
+
+/* OUTSIDE CLICK করলে MODAL CLOSE */
+
+document.addEventListener("click",function(e){
+
+const modal = document.getElementById("modal");
+
+if(e.target === modal){
+closeModal();
+}
+
+});
