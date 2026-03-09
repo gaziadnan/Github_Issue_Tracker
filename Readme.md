@@ -21,4 +21,16 @@ const arr2 = [...arr1,4,5];
 
 Here the elements from arr1 are spread into arr2.
 
+
+
 Answer To The Question Number 3:
+
+These three methods are used to work with arrays.
+
+map() goes through each element of an array and returns a new array after applying a function to every element.
+
+filter() also checks each element, but it only returns the elements that match a specific condition.
+
+forEach() simply loops through the array and performs an action for each element, but it does not return a new array.
+
+
