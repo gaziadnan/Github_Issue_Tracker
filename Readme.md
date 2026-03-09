@@ -8,3 +8,17 @@ let was introduced later in ES6. It works inside a block {}. This means it is on
 const is also block-scoped like let, but its value cannot be reassigned after it is set. It is usually used when the value should stay the same.
 
 
+Answer To The Question Number 2:
+
+The spread operator (...) is used to expand values from an array or object. It helps when you want to copy elements, combine arrays, or pass multiple values easily.
+
+For example, if you have an array and you want to add more elements to it, you can use the spread operator to include the existing elements.
+
+Example:
+
+const arr1 = [1,2,3];
+const arr2 = [...arr1,4,5];
+
+Here the elements from arr1 are spread into arr2.
+
+Answer To The Question Number 3:
