@@ -17,7 +17,7 @@ loadIssues();
 } 
 else {
 
-alert("Invalid Credentials");
+alert("You Enter Worng Passwoerd. Request to Try Again With Right One.");
 
 }
 
