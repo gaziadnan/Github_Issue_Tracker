@@ -62,19 +62,31 @@ let className = "label";
 
 if (label.toLowerCase() === "bug") {
 
-icon = "images/bug.png";
+icon = "./assets/Vector.png";
 className = "label bug";
 
 }
 else if (label.toLowerCase() === "help wanted") {
 
-icon = "images/help.png";
+icon = "./assets/Lifebuoy.png";
 className = "label help";
+
+}
+else if (label.toLowerCase() === "documentation") {
+
+icon = "./assets/Lifebuoy.png";
+className = "label documentation";
+
+}
+else if (label.toLowerCase() === "good first issue") {
+
+icon = "./assets/Lifebuoy.png";
+className = "label good first issue";
 
 }
 else if (label.toLowerCase() === "enhancement") {
 
-icon = "images/enhancement.png";
+icon = "./assets/Sparkle.png";
 className = "label enhance";
 
 }
