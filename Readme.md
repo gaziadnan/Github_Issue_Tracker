@@ -34,3 +34,13 @@ filter() also checks each element, but it only returns the elements that match a
 forEach() simply loops through the array and performs an action for each element, but it does not return a new array.
 
 
+Answer To The Question Number 4:
+
+An arrow function is a shorter way of writing functions in JavaScript. It uses the => symbol and makes the code look cleaner.
+
+It is mostly used for small functions or when working with array methods.
+Example:
+
+const multiply = (a,b) => {
+  return a * b;
+}
