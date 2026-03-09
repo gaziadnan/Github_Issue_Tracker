@@ -44,3 +44,17 @@ Example:
 const multiply = (a,b) => {
   return a * b;
 }
+
+
+Answer To The Question Number 5:
+
+Template literals are a modern way to create strings in JavaScript using backticks (`).
+
+They allow variables to be inserted directly inside a string using ${}.
+
+Example:
+
+const name = "Rahim";
+const message = `Hello, my name is ${name}`;
+
+This makes string creation easier and more readable.
